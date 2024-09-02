@@ -1,7 +1,7 @@
 {
-    "name": "GE Protocol",
-    "short_name": "GE",
-    "description": "GE Protocol",
+    "name": "ZK Research",
+    "short_name": "zk",
+    "description": "ZK Research",
     "start_url": "./",
     "display": "standalone",
     "background_color": "#232333",

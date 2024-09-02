@@ -24,8 +24,8 @@ import WagmiProviderLocal from "@/components/wagmi/WagmiProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "GE Protocol",
-  description: "Description",
+  title: "ZK Research",
+  description: "...",
 };
 
 export default function RootLayout({

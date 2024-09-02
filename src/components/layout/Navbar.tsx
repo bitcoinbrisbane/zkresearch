@@ -59,9 +59,7 @@ const Navbar: React.FC = () => {
             height={20}
             priority
           />
-          <div className="text-sm md:text-lg font-bold my-3 md:my-auto">
-            GE Protocol
-          </div>
+          <div className="text-sm md:text-lg font-bold my-3 md:my-auto">ZK</div>
         </div>
         {/* Center */}
         <ul className="hidden md:flex flex-space-2 mx-2 md:space-x-4">
