@@ -35,8 +35,8 @@ class PriceStore {
           publish_interval: "1",
           quote_currency: "USD",
           symbol: "Crypto.USDC/USD",
-          weekly_schedule: "America/New_York,O,O,O,O,O,O,O"
-        }
+          weekly_schedule: "America/New_York,O,O,O,O,O,O,O",
+        },
       },
       {
         id: "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
@@ -48,8 +48,8 @@ class PriceStore {
           publish_interval: "1",
           quote_currency: "USD",
           symbol: "Crypto.BTC/USD",
-          weekly_schedule: "America/New_York,O,O,O,O,O,O,O"
-        }
+          weekly_schedule: "America/New_York,O,O,O,O,O,O,O",
+        },
       },
       {
         id: "ef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d",
@@ -61,8 +61,8 @@ class PriceStore {
           publish_interval: "1",
           quote_currency: "USD",
           symbol: "Crypto.SOL/USD",
-          weekly_schedule: "America/New_York,O,O,O,O,O,O,O"
-        }
+          weekly_schedule: "America/New_York,O,O,O,O,O,O,O",
+        },
       },
     ];
 
@@ -71,14 +71,16 @@ class PriceStore {
       for (const item of defaultItems) {
         this.itemMap.set(item.id, item);
 
-        const existingItem = this.items.find(i => i.name === item.attributes.base);
+        const existingItem = this.items.find(
+          (i) => i.name === item.attributes.base
+        );
         if (existingItem) {
           existingItem.data = item;
         } else {
           this.items.push({
             name: item.attributes.base,
             currentPrice: this.defaultPrice,
-            data: item
+            data: item,
           });
         }
 
@@ -88,33 +90,36 @@ class PriceStore {
 
       // Fetch price IDs from API and update items with new data
       await this.fetchPriceIds();
-      
     });
   }
 
   // Fetch price IDs from the API and update items
   async fetchPriceIds() {
     try {
-      const response = await fetch("https://hermes.pyth.network/v2/price_feeds?asset_type=crypto");
+      const response = await fetch(
+        "https://hermes.pyth.network/v2/price_feeds?asset_type=crypto"
+      );
       const data = await response.json();
-  
+
       runInAction(() => {
         // Update itemMap and items
         data.forEach((item: any) => {
           this.itemMap.set(item.id, item);
-  
-          const existingItem = this.items.find(i => i.name === item.attributes.base);
+
+          const existingItem = this.items.find(
+            (i) => i.name === item.attributes.base
+          );
           if (existingItem) {
             existingItem.data = item; // Update existing item data
           } else {
             this.items.push({
               name: item.attributes.base,
               currentPrice: this.defaultPrice,
-              data: item
+              data: item,
             });
           }
         });
-  
+
         // Optionally fetch prices for the first 10 IDs
         // const ids = data.slice(0, 10).map((item: any) => item.id);
         // if (ids.length > 0) {
@@ -125,7 +130,6 @@ class PriceStore {
       console.error("Failed to fetch price IDs:", error);
     }
   }
-  
 
   // Fetch the latest prices based on the provided IDs
   async fetchLatestPrices(ids: string[]) {
@@ -217,7 +221,8 @@ class PriceStore {
       if (this.firstInputValue) {
         const value =
           parseFloat(this.firstInputValue) *
-          (this.firstSelectedItem.currentPrice / this.secondSelectedItem.currentPrice);
+          (this.firstSelectedItem.currentPrice /
+            this.secondSelectedItem.currentPrice);
         this.secondInputValue = value.toFixed(6).toString();
       } else {
         this.secondInputValue = "";
@@ -225,7 +230,8 @@ class PriceStore {
       if (this.secondInputValue) {
         const value =
           parseFloat(this.secondInputValue) *
-          (this.secondSelectedItem.currentPrice / this.firstSelectedItem.currentPrice);
+          (this.secondSelectedItem.currentPrice /
+            this.firstSelectedItem.currentPrice);
         this.firstInputValue = value.toFixed(6).toString();
       } else {
         this.firstInputValue = "";

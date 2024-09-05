@@ -1,7 +1,7 @@
 // lib/pythApi.ts
-import axios from 'axios';
+import axios from "axios";
 
-const HERMES_BASE_URL = 'https://hermes.pyth.network';
+const HERMES_BASE_URL = "https://hermes.pyth.network";
 
 export interface Price {
   price: number;
@@ -18,16 +18,23 @@ export interface PriceFeed {
 }
 
 export const getPriceFeedIds = async (): Promise<string[]> => {
-  const response = await axios.get<string[]>(`${HERMES_BASE_URL}/api/price_feed_ids`);
+  const response = await axios.get<string[]>(
+    `${HERMES_BASE_URL}/api/price_feed_ids`
+  );
   return response.data;
 };
 
-export const getLatestPriceFeeds = async (ids: string[]): Promise<PriceFeed[]> => {
-  const response = await axios.get<PriceFeed[]>(`${HERMES_BASE_URL}/api/latest_price_feeds`, {
-    params: {
-      ids: ids,
-      verbose: true,
-    },
-  });
+export const getLatestPriceFeeds = async (
+  ids: string[]
+): Promise<PriceFeed[]> => {
+  const response = await axios.get<PriceFeed[]>(
+    `${HERMES_BASE_URL}/api/latest_price_feeds`,
+    {
+      params: {
+        ids: ids,
+        verbose: true,
+      },
+    }
+  );
   return response.data;
 };

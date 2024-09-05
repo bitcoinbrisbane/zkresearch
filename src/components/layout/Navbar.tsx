@@ -107,7 +107,7 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
       {/* Menu Section 2 */}
-      <nav className="bg-secondary-dark-500 text-white/80  shadow-lg z-50  fixed top-11 right-0 left-0 md:static md:top-auto md:right-auto md:left-auto border-t-[1px] border-primary-dark-500 md:border-0">
+      {/* <nav className="bg-secondary-dark-500 text-white/80  shadow-lg z-50  fixed top-11 right-0 left-0 md:static md:top-auto md:right-auto md:left-auto border-t-[1px] border-primary-dark-500 md:border-0">
         <div className="flex justify-center w-100 ">
           <ul className="flex space-x-2 md:space-x-16">
             {subMenuItems
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
               ))}
           </ul>
         </div>
-      </nav>
+      </nav> */}
 
       <MobileBottomMenu />
     </>

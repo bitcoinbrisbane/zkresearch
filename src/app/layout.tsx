@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { StoreProvider } from "@/stores/storePovider";
@@ -11,7 +10,6 @@ import PWAInstallPopup from "@/components/pwa/PWAInstallPopup";
 
 // wagmi
 import WagmiProviderLocal from "@/components/wagmi/WagmiProvider";
-
 
 // wallet
 // import { Web3ReactProvider, Web3ReactHooks } from "@web3-react/core";
@@ -33,7 +31,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
     <html id="root" lang="en-US" className="dark ">
       <head>

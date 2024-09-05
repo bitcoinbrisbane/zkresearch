@@ -1,10 +1,7 @@
-// components/trade/CardSwapGraph.tsx
-
 import React, { useState, useEffect } from "react";
 import { AiOutlineSwap } from "react-icons/ai";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { Item } from "@/static/interface";
-import Image from "next/image";
 import SimpleChart from "./swap/SimpleChart";
 import Coin from "../Coin";
 
@@ -20,11 +17,6 @@ const CardSwapGraph: React.FC<CardSwapGraphProps> = ({
   const [exchangeRate, setExchangeRate] = useState<number>(0);
   const [isSwapped, setIsSwapped] = useState(false);
   const [showPriceInfo, setShowPriceInfo] = useState(false);
-
-  // Menghitung exchange rate berdasarkan currentPrice
-  useEffect(() => {
-    calculateExchangeRate();
-  }, [firstSelectedItem, secondSelectedItem, isSwapped]);
 
   const calculateExchangeRate = () => {
     if (
@@ -43,8 +35,27 @@ const CardSwapGraph: React.FC<CardSwapGraphProps> = ({
     }
   };
 
+  useEffect(() => {
+    //calculateExchangeRate();
+
+    if (
+      firstSelectedItem.currentPrice !== 0 &&
+      secondSelectedItem.currentPrice !== 0
+    ) {
+      if (isSwapped) {
+        setExchangeRate(
+          secondSelectedItem.currentPrice / firstSelectedItem.currentPrice
+        );
+      } else {
+        setExchangeRate(
+          firstSelectedItem.currentPrice / secondSelectedItem.currentPrice
+        );
+      }
+    }
+  }, [firstSelectedItem, secondSelectedItem, isSwapped]);
+
   const handleSwap = () => {
-    setIsSwapped(!isSwapped); // Mengubah nilai isSwapped terlebih dahulu
+    setIsSwapped(!isSwapped);
   };
 
   const togglePriceInfo = () => {
@@ -91,7 +102,7 @@ const CardSwapGraph: React.FC<CardSwapGraphProps> = ({
         {/* Baris Ketiga: Informasi dan Grafik Token 2 */}
         <div className="flex flex-row items-center space-y-0 md:space-x-4">
           <div className="flex items-center flex-1 space-x-2">
-            <Coin name={secondSelectedItem.name}  />
+            <Coin name={secondSelectedItem.name} />
             <div>
               <div className="text-sm md:text-md font-semibold">
                 {secondSelectedItem.name}

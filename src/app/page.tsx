@@ -1,7 +1,7 @@
 import Swap from "./trade/swap/page";
 
 const Dashboard = () => {
-	return (<Swap/>)
+  return <Swap />;
 };
 
 export default Dashboard;

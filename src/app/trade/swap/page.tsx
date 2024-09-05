@@ -12,10 +12,7 @@ const InputWithModal = dynamic(() => import("@/components/InputWithModal"), {
   ssr: true,
   loading: () => <p>Loading...</p>,
 });
-const CardSwapGraph = dynamic(() => import("@/components/trade/CardSwapGraph"), {
-  ssr: true,
-  loading: () => <p>Loading...</p>,
-});
+
 const Modal = dynamic(() => import("@/components/Modal"));
 const SwapRouteFlow = dynamic(() => import("@/components/trade/SwapRouteFlow"));
 
@@ -24,8 +21,10 @@ const Swap: React.FC = () => {
 
   const [firstInputValue, setFirstInputValue] = useState<string>("");
   const [secondInputValue, setSecondInputValue] = useState<string>("");
-  const [isFirstInputChanging, setIsFirstInputChanging] = useState<boolean>(false);
-  const [isSecondInputChanging, setIsSecondInputChanging] = useState<boolean>(false);
+  const [isFirstInputChanging, setIsFirstInputChanging] =
+    useState<boolean>(false);
+  const [isSecondInputChanging, setIsSecondInputChanging] =
+    useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const items = priceStore.getItems();
@@ -46,7 +45,12 @@ const Swap: React.FC = () => {
       }
       setIsFirstInputChanging(false);
     }
-  }, [firstInputValue, firstSelectedItem, secondSelectedItem, isFirstInputChanging]);
+  }, [
+    firstInputValue,
+    firstSelectedItem,
+    secondSelectedItem,
+    isFirstInputChanging,
+  ]);
 
   useEffect(() => {
     if (isSecondInputChanging) {
@@ -60,7 +64,12 @@ const Swap: React.FC = () => {
       }
       setIsSecondInputChanging(false);
     }
-  }, [secondInputValue, firstSelectedItem, secondSelectedItem, isSecondInputChanging]);
+  }, [
+    secondInputValue,
+    firstSelectedItem,
+    secondSelectedItem,
+    isSecondInputChanging,
+  ]);
 
   const handleFirstInputChange = (value: string) => {
     setIsFirstInputChanging(true);
@@ -108,8 +117,7 @@ const Swap: React.FC = () => {
   };
 
   const isRouteVisible =
-    parseFloat(firstInputValue) > 0 ||
-    parseFloat(secondInputValue) > 0;
+    parseFloat(firstInputValue) > 0 || parseFloat(secondInputValue) > 0;
 
   const handleRouteButtonClick = () => {
     setIsModalOpen(true);
@@ -124,12 +132,12 @@ const Swap: React.FC = () => {
             <div className="ml-auto flex flex-row gap-2 text-white/50">
               <div>
                 <button className="h-fit cursor-pointer  rounded-full  fill-white-25 hover:text-primary-gold-500 focus:outline-1 ">
-                  <FiRefreshCw size={18} strokeWidth={3}/>
+                  <FiRefreshCw size={18} strokeWidth={3} />
                 </button>
               </div>
               <div>
                 <button className="h-fit cursor-pointer  rounded-full  fill-white-25 hover:text-primary-gold-500 focus:outline-1 ">
-                  <FiSettings size={18} strokeWidth={3}/>
+                  <FiSettings size={18} strokeWidth={3} />
                 </button>
               </div>
             </div>
@@ -143,7 +151,7 @@ const Swap: React.FC = () => {
                 <button className="text-white p-0.5 rounded text-xs font-semibold">
                   From
                 </button>
-                <div className="flex space-x-1">
+                {/* <div className="flex space-x-1">
                   <div className=" text-white py-0.5 px-1 rounded font-semibold flex items-center">
                     <FaWallet className="mr-1" />{" "}
                     {(walletInDollars / firstSelectedItem.currentPrice).toFixed(
@@ -165,7 +173,7 @@ const Swap: React.FC = () => {
                   >
                     MAX
                   </button>
-                </div>
+                </div> */}
               </div>
               <InputWithModal
                 items={items}
@@ -236,12 +244,12 @@ const Swap: React.FC = () => {
         </div>
 
         {/* GRAPH */}
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <CardSwapGraph
             firstSelectedItem={firstSelectedItem}
             secondSelectedItem={secondSelectedItem}
           />
-        </div>
+        </div> */}
 
         {/* Modal */}
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

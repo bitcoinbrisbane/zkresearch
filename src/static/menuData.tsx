@@ -16,8 +16,8 @@ export const subMenuItems: MenuItem[] = [
     text: "Trade",
     items: [
       { key: "swap", text: "Swap" },
-      { key: "limit-order", text: "Limit Order" },
-      { key: "bridge", text: "Bridge" },
+      // { key: "limit-order", text: "Limit Order" },
+      // { key: "bridge", text: "Bridge" },
     ],
   },
   {
@@ -49,8 +49,6 @@ export const subMenuItems: MenuItem[] = [
   {
     key: "dashboard",
     text: "Dashboard",
-    items: [
-      { key: "testing-area", text: "Testing Area" },
-    ],
+    items: [{ key: "testing-area", text: "Testing Area" }],
   },
 ];
